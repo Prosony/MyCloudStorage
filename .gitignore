@@ -4,6 +4,7 @@ node_modules/
 *.iml
 config.json
 messages.json
+target/
 =======
 # Logs
 logs

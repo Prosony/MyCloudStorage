@@ -5,6 +5,7 @@ node_modules/
 config.json
 messages.json
 target/
+.settings/
 =======
 # Logs
 logs

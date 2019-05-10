@@ -44,6 +44,7 @@
         <servlet-api-version>3.1.0</servlet-api-version>
         <log4j-version>1.2.17</log4j-version>
         <slf4j-api-version>1.7.5</slf4j-api-version>
+        <jasypt-version>1.9.2</jasypt-version>
     </properties>
 
 <dependencyManagement>
@@ -153,6 +154,13 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-api-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>${jasypt-version}</version>
+        </dependency>
+
 
     </dependencies>
 </dependencyManagement>

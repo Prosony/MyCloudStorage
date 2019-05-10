@@ -1,6 +1,5 @@
 package com.prsn.db;
 
-
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -19,41 +18,29 @@ import java.util.*;
 @ApplicationScoped
 public class ConnectionDB {
 
-
-    private final long POOL_CONNECTION_MAX;
-
     /**
      * pool connection to db
      */
     private Vector<MongoClient> usedConnections = new Vector<>();
     private Vector<MongoClient> availableConnections = new Vector<>();
 
-    private final static ConnectionDB instance = new ConnectionDB();
 
-    public static ConnectionDB getInstance(){
-        return instance;
-    }
-
-    private ConnectionDB() {
-        POOL_CONNECTION_MAX = Long.parseLong(properties.getProperty("DataBase.POOL_CONNECTION_MAX"));
-    }
-
-    public synchronized MongoClient retrieve() {
-        MongoClient client = null;
-        if (availableConnections.size() == 0) {
-            if ((availableConnections.size()+usedConnections.size()) < POOL_CONNECTION_MAX){
-                client = createConnection();
-            } else {
-                log.error("[ConnectionDB] Maximum pool size reached, no available connections!");
-                throw new RuntimeException("Maximum pool size reached, no available connections!");
-            }
-        } else {
-            client = availableConnections.lastElement();
-            availableConnections.removeElement(client);
-        }
-        usedConnections.addElement(client);
-        return client;
-    }
+//    public synchronized MongoClient retrieve() {
+//        MongoClient client = null;
+//        if (availableConnections.size() == 0) {
+//            if ((availableConnections.size()+usedConnections.size()) < POOL_CONNECTION_MAX){
+//                client = createConnection();
+//            } else {
+//                log.error("[ConnectionDB] Maximum pool size reached, no available connections!");
+//                throw new RuntimeException("Maximum pool size reached, no available connections!");
+//            }
+//        } else {
+//            client = availableConnections.lastElement();
+//            availableConnections.removeElement(client);
+//        }
+//        usedConnections.addElement(client);
+//        return client;
+//    }
 
     public synchronized void putback(MongoClient client) throws RuntimeException {
         if (client != null) {
@@ -73,8 +60,8 @@ public class ConnectionDB {
     }
 
     public void insertDocument(String titleCollection, Document doc) {
-        MongoCollection<Document> collection = retrieve().getDatabase(properties.getProperty("DataBase.TITLE")).getCollection(titleCollection);
-        collection.insertOne(doc);
+//        MongoCollection<Document> collection = retrieve().getDatabase(properties.getProperty("DataBase.TITLE")).getCollection(titleCollection);
+//        collection.insertOne(doc);
     }
 
 
@@ -82,4 +69,6 @@ public class ConnectionDB {
     private PropertiesService properties;
 
     private static final Logger log = LoggerFactory.getLogger(ConnectionDB.class);
+
+//    private final long POOL_CONNECTION_MAX = Long.parseLong(properties.getProperty("DataBase.POOL_CONNECTION_MAX"));
 }

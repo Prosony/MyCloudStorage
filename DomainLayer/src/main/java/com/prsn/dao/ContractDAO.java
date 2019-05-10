@@ -6,12 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 //import io.prsn.domain.db.ConnectionDB;
 
 import com.prsn.ResultCodes;
+import com.prsn.db.ConnectionDB;
 import com.prsn.models.Contract;
 import com.prsn.models.ContractLogin;
 import org.bson.Document;
 
-//import javax.inject.Inject;
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,8 +40,8 @@ public class ContractDAO {
             Document contractDoc = Document.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(contract));
             Document contractLoginDoc = Document.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(contractLogin));
 
-//            connection.insertDocument("Contract",contractDoc);
-//            connection.insertDocument("ContractLogin",contractLoginDoc);
+            connection.insertDocument("Contract",contractDoc);
+            connection.insertDocument("ContractLogin",contractLoginDoc);
 
             return ResultCodes.STATUS_CREATED;
         } catch (JsonProcessingException e) {
@@ -49,6 +50,7 @@ public class ContractDAO {
         }
     }
 
-//   private  ConnectionDB connection = ConnectionDB.getInstance();
+    @Inject
+    private ConnectionDB connection;
 }
 

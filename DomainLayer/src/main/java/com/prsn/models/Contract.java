@@ -1,6 +1,7 @@
-package io.prsn.domain.models;
+package com.prsn.models;
 
-import java.util.Date ;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class Contract{
@@ -19,7 +20,7 @@ public class Contract{
         this.phone = phone;
         this.lastCode = lastCode;
     }
-    
+
     public void set_id(UUID _id){
         this._id = _id;
     }

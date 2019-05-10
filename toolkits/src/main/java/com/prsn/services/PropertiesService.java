@@ -1,4 +1,4 @@
-package io.prsn.toolkit.services;
+package com.prsn.services;
 
 import javax.enterprise.context.Dependent;
 import java.io.FileInputStream;

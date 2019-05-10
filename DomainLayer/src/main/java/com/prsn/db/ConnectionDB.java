@@ -1,19 +1,22 @@
-package io.prsn.domain.db;
+package com.prsn.db;
+
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import io.prsn.toolkit.services.PropertiesService;
-import org.bson.Document;
+import com.prsn.services.PropertiesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.bson.Document;
+
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.*;
 
-//@ApplicationScoped
+@ApplicationScoped
 public class ConnectionDB {
 
 

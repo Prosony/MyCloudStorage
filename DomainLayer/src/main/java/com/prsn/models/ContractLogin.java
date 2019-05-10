@@ -1,4 +1,5 @@
-package io.prsn.domain.models;
+package com.prsn.models;
+
 
 import java.util.Date;
 import java.util.UUID;
@@ -8,7 +9,7 @@ public class ContractLogin {
     public ContractLogin(){}
 
 
-	public ContractLogin(String username, String passwordHash, Date last){
+    public ContractLogin(String username, String passwordHash, Date last){
         this.phone = username;
         this.codeHash = passwordHash;
         this.setLast(last);
@@ -43,14 +44,14 @@ public class ContractLogin {
     }
 
     public Date getLast() {
-		return last;
-	}
-	public void setLast(Date last) {
-		this.last = last;
-	}
+        return last;
+    }
+    public void setLast(Date last) {
+        this.last = last;
+    }
 
 
-	private UUID _id;
+    private UUID _id;
     private UUID idContract;
     private String phone;
     private String codeHash;

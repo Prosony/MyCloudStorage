@@ -1,12 +1,13 @@
-package io.prsn.domain.dao;
+package com.prsn.dao;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.prsn.domain.ResultCodes;
 //import io.prsn.domain.db.ConnectionDB;
-import io.prsn.domain.models.Contract;
-import io.prsn.domain.models.ContractLogin;
 
+import com.prsn.ResultCodes;
+import com.prsn.models.Contract;
+import com.prsn.models.ContractLogin;
 import org.bson.Document;
 
 //import javax.inject.Inject;
@@ -50,3 +51,4 @@ public class ContractDAO {
 
 //   private  ConnectionDB connection = ConnectionDB.getInstance();
 }
+

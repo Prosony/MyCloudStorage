@@ -1,4 +1,5 @@
-package io.prsn.toolkit.security;
+package com.prsn.security;
+
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.codec.digest.Crypt;

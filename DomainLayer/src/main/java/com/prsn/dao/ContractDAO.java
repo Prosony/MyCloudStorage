@@ -3,7 +3,6 @@ package com.prsn.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import io.prsn.domain.db.ConnectionDB;
 
 import com.prsn.ResultCodes;
 import com.prsn.db.ConnectionDB;
@@ -16,6 +15,9 @@ import javax.inject.Inject;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * @author プロソニーPRSN
+ */
 @Dependent
 public class ContractDAO {
 

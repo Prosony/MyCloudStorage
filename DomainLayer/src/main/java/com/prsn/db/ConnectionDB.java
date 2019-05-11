@@ -15,11 +15,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.*;
 
+/**
+ * @author プロソニーPRSN
+ */
 @ApplicationScoped
 public class ConnectionDB {
 
     /**
-     * pool connection to db
+     * Pool connection to db
      */
     private Vector<MongoClient> usedConnections = new Vector<>();
     private Vector<MongoClient> availableConnections = new Vector<>();

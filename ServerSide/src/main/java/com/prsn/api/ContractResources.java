@@ -21,7 +21,9 @@ import javax.ws.rs.core.MediaType;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @author プロソニーPRSN
+ */
 @RequestScoped
 @Path("/api/v1")
 public class ContractResources {

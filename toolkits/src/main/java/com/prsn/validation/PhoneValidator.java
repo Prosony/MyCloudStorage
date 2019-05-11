@@ -3,6 +3,9 @@ package com.prsn.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+/**
+ * @author プロソニーPRSN
+ */
 
 public class PhoneValidator implements ConstraintValidator<Phone, CharSequence> {
 

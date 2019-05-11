@@ -1,5 +1,9 @@
 package com.prsn;
 
+
+/**
+ * @author プロソニーPRSN
+ */
 public class ResultCodes {
 
     public static final long STATUS_OK                       =  200;

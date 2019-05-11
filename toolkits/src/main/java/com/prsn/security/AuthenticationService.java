@@ -1,8 +1,10 @@
 package com.prsn.security;
 
-
 import javax.ws.rs.container.ContainerRequestContext;
 
+/**
+ * @author プロソニーPRSN
+ */
 public interface AuthenticationService{
     /**
      * Аутентификация.

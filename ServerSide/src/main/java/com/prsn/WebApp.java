@@ -15,7 +15,9 @@ import javax.ws.rs.core.Context;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * @author プロソニーPRSN
+ */
 @ApplicationScoped
 @ApplicationPath("/")
 public class WebApp extends Application {
@@ -28,14 +30,14 @@ public class WebApp extends Application {
         return result;
     }
     /**
-     * Инициализация web-приложения.
+     * initialize WebApp.
      */
     @PostConstruct
     public void initialize() {
 
     }
     /**
-     * Сервлет для работы Resteasy.
+     * Servlet for Resteasy.
      */
     @ApplicationScoped
     @WebServlet(urlPatterns={ "/*" }, asyncSupported=true, initParams={

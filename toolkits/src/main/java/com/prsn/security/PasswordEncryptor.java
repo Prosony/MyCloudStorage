@@ -9,7 +9,9 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
 
-
+/**
+ * @author プロソニーPRSN
+ */
 @Dependent
 public class PasswordEncryptor {
 
@@ -29,20 +31,19 @@ public class PasswordEncryptor {
     }
 
     /**
-     * Формирование хеша из пароля.
-     * @param password Пароль.
-     * @param salt "Соль" для пароля.
+     * Formation hash password.
+     * @param password
      */
     public String encryptPassword(String password) {
         return Crypt.crypt(password, getNextSalt()); // 1 - ABeLd7prwPWdA
     }
 
     /**
-     * Проверка пароля на соответствие хешированному паролю.
-     * @param plainPassword Пароль в открытом виде.
-     * @param encryptedPassword Хешированный пароль.
-     * @param salt "Соль" для пароля.
-     * @return true - проверка успешна.
+     * Check password.
+     * @param plainPassword password.
+     * @param encryptedPassword hash password.
+     * @param salt.
+     * @return true - success.
      */
     public boolean checkPassword(String plainPassword, String encryptedPassword) {
         // Пустые пароли пусть будут всегда неверны.

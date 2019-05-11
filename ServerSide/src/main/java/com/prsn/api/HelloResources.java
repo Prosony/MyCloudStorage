@@ -11,7 +11,11 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-
+/**
+ * for testing
+ * f#ck junit
+ * @author プロソニーPRSN
+ */
 @Path("/")
 @RequestScoped
 public class HelloResources {

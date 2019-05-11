@@ -16,6 +16,9 @@ import javax.inject.Named;
 import java.security.SecureRandom;
 import java.util.Date;
 
+/**
+ * @author プロソニーPRSN
+ */
 @Dependent
 public class ContractService {
 

@@ -4,6 +4,10 @@ import java.util.Date;
 
 import javax.ws.rs.container.ContainerRequestContext;
 
+/**
+ * @author プロソニーPRSN
+ */
+
 public interface AuthorizationService {
 
     /**

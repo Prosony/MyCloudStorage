@@ -31,8 +31,7 @@ public class ContractService {
 
 		final String salt = Base64.encodeBase64String(saltBytes);
         String nowDate = new ISO8601DateFormat().format(new Date());
-        String encryptesTicket = encryptorProvider.get().encrypt(salt  + "\0" + nowDate );
-        return encryptesTicket;
+        return encryptorProvider.get().encrypt(salt  + "\0" + nowDate );
     }
 
     public long createContract(String phone, String code) {

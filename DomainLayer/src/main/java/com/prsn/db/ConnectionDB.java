@@ -1,19 +1,18 @@
 package com.prsn.db;
 
+
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.prsn.services.PropertiesService;
+import com.prsn.services.ConfigurationProducer;
+import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.bson.Document;
-
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.*;
+import java.util.Vector;
 
 /**
  * @author プロソニーPRSN
@@ -27,23 +26,28 @@ public class ConnectionDB {
     private Vector<MongoClient> usedConnections = new Vector<>();
     private Vector<MongoClient> availableConnections = new Vector<>();
 
+    public ConnectionDB() {
+//        System.out.println("pool: "+producer.getProperty("DataBase.POOL_CONNECTION_MAX"));
+        POOL_CONNECTION_MAX = 100;
+        //Long.parseLong(producer.getProperty("DataBase.POOL_CONNECTION_MAX"));
+    }
 
-//    public synchronized MongoClient retrieve() {
-//        MongoClient client = null;
-//        if (availableConnections.size() == 0) {
-//            if ((availableConnections.size()+usedConnections.size()) < POOL_CONNECTION_MAX){
-//                client = createConnection();
-//            } else {
-//                log.error("[ConnectionDB] Maximum pool size reached, no available connections!");
-//                throw new RuntimeException("Maximum pool size reached, no available connections!");
-//            }
-//        } else {
-//            client = availableConnections.lastElement();
-//            availableConnections.removeElement(client);
-//        }
-//        usedConnections.addElement(client);
-//        return client;
-//    }
+    public synchronized MongoClient retrieve() {
+        MongoClient client = null;
+        if (availableConnections.size() == 0) {
+            if ((availableConnections.size()+usedConnections.size()) < POOL_CONNECTION_MAX){
+                client = createConnection();
+            } else {
+                log.error("[ConnectionDB] Maximum pool size reached, no available connections!");
+                throw new RuntimeException("Maximum pool size reached, no available connections!");
+            }
+        } else {
+            client = availableConnections.lastElement();
+            availableConnections.removeElement(client);
+        }
+        usedConnections.addElement(client);
+        return client;
+    }
 
     public synchronized void putback(MongoClient client) throws RuntimeException {
         if (client != null) {
@@ -59,19 +63,19 @@ public class ConnectionDB {
     }
 
     private MongoClient createConnection() {
-        return MongoClients.create(new ConnectionString(properties.getProperty("DataBase.URI_DEV")));
+        return MongoClients.create(new ConnectionString(producer.getProperty("DataBase.URI_DEV")));
     }
 
     public void insertDocument(String titleCollection, Document doc) {
-//        MongoCollection<Document> collection = retrieve().getDatabase(properties.getProperty("DataBase.TITLE")).getCollection(titleCollection);
-//        collection.insertOne(doc);
+        MongoCollection<Document> collection = retrieve().getDatabase(producer.getProperty("DataBase.TITLE")).getCollection(titleCollection);
+        collection.insertOne(doc);
     }
 
 
-    @Inject
-    private PropertiesService properties;
-
     private static final Logger log = LoggerFactory.getLogger(ConnectionDB.class);
 
-//    private final long POOL_CONNECTION_MAX = Long.parseLong(properties.getProperty("DataBase.POOL_CONNECTION_MAX"));
+    @Inject
+    private ConfigurationProducer producer;
+
+    private final long POOL_CONNECTION_MAX;
 }

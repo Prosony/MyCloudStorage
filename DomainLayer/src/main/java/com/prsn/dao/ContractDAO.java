@@ -42,8 +42,8 @@ public class ContractDAO {
             Document contractDoc = Document.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(contract));
             Document contractLoginDoc = Document.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(contractLogin));
 
-            connection.insertDocument("Contract",contractDoc);
-            connection.insertDocument("ContractLogin",contractLoginDoc);
+//            connection.insertDocument("Contract",contractDoc);
+//            connection.insertDocument("ContractLogin",contractLoginDoc);
 
             return ResultCodes.STATUS_CREATED;
         } catch (JsonProcessingException e) {

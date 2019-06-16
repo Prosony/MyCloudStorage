@@ -53,15 +53,4 @@ public class WebApp extends Application {
     @Context
     private ServletContext servletContext;
 
-
-//    private Set<Object> singletonSet = new HashSet<Object>();
-//
-//    public WebApp() {
-//        singletonSet.add(new HelloResources());
-//    }
-//
-//    @Override
-//    public Set<Object> getSingletons() {
-//        return singletonSet;
-//    }
 }

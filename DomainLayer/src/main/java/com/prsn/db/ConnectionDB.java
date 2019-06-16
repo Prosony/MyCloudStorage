@@ -11,12 +11,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import java.util.Vector;
 
 /**
  * @author プロソニーPRSN
  */
+
 @ApplicationScoped
 public class ConnectionDB {
 
@@ -27,7 +29,7 @@ public class ConnectionDB {
     private Vector<MongoClient> availableConnections = new Vector<>();
 
     public ConnectionDB() {
-//        System.out.println("pool: "+producer.getProperty("DataBase.POOL_CONNECTION_MAX"));
+//        System.out.println("TITLE: "+producer.getProperty("DataBase.TITLE"));
         POOL_CONNECTION_MAX = 100;
         //Long.parseLong(producer.getProperty("DataBase.POOL_CONNECTION_MAX"));
     }

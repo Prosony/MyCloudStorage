@@ -11,8 +11,10 @@ import java.util.Properties;
 @ApplicationScoped
 public class ConfigurationProducer {
 
+
     private final Properties PROPERTIES = new Properties();
     private final String RESOURCE_NAME = "config.properties";
+
     public ConfigurationProducer(){
         loadConfig();
     }

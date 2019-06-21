@@ -1,5 +1,6 @@
 package com.prsn.api;
 
+import com.prsn.db.ConnectionDB;
 import com.prsn.services.ConfigurationProducer;
 import com.prsn.services.ContractService;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class HelloResources {
     @Path("/hello")
     public Response hello() {
         log.debug("HELLO WORLD");
-        System.out.println("producer: "+producer.getProperty("DataBase.POOL_CONNECTION_MAX"));
+        System.out.println("producer: "+producer.getConfiguration().getProperty("DataBase.POOL_CONNECTION_MAX"));
         return Response.status(200).entity("hello").build();
     }
 
@@ -42,4 +43,7 @@ public class HelloResources {
 
     @Inject
     private ConfigurationProducer producer;
+
+    @Inject
+    ConnectionDB connectionDB;
 }

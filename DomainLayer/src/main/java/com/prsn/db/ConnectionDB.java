@@ -10,6 +10,7 @@ import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -28,11 +29,13 @@ public class ConnectionDB {
     private Vector<MongoClient> usedConnections = new Vector<>();
     private Vector<MongoClient> availableConnections = new Vector<>();
 
-    public ConnectionDB() {
-//        System.out.println("TITLE: "+producer.getProperty("DataBase.TITLE"));
-        POOL_CONNECTION_MAX = 100;
-        //Long.parseLong(producer.getProperty("DataBase.POOL_CONNECTION_MAX"));
+
+    @PostConstruct
+    public void init() {
+        POOL_CONNECTION_MAX = (long) producer.getConfiguration().getProperty("DataBase.POOL_CONNECTION_MAX");
+        System.out.println("TITLE: "+producer.getConfiguration().getProperty("DataBase.TITLE"));
     }
+
 
     public synchronized MongoClient retrieve() {
         MongoClient client = null;
@@ -65,11 +68,11 @@ public class ConnectionDB {
     }
 
     private MongoClient createConnection() {
-        return MongoClients.create(new ConnectionString(producer.getProperty("DataBase.URI_DEV")));
+        return MongoClients.create(new ConnectionString(String.valueOf(producer.getConfiguration().getProperty("DataBase.URI_DEV"))));
     }
 
     public void insertDocument(String titleCollection, Document doc) {
-        MongoCollection<Document> collection = retrieve().getDatabase(producer.getProperty("DataBase.TITLE")).getCollection(titleCollection);
+        MongoCollection<Document> collection = retrieve().getDatabase(String.valueOf(producer.getConfiguration().getProperty("DataBase.TITLE"))).getCollection(titleCollection);
         collection.insertOne(doc);
     }
 
@@ -79,5 +82,5 @@ public class ConnectionDB {
     @Inject
     private ConfigurationProducer producer;
 
-    private final long POOL_CONNECTION_MAX;
+    private long POOL_CONNECTION_MAX;
 }

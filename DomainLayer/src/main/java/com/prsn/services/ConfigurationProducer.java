@@ -1,44 +1,35 @@
 package com.prsn.services;
 
+
+import com.prsn.config.ConfigurationLoaded;
+import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.event.ConfigurationEvent;
+
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.event.Event;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import javax.ws.rs.ext.Provider;
 
-@ApplicationScoped
+@Provider
+@Dependent
 public class ConfigurationProducer {
 
 
-    private final Properties PROPERTIES = new Properties();
-    private final String RESOURCE_NAME = "config.properties";
-
-    public ConfigurationProducer(){
-        loadConfig();
-    }
-
     @Produces
-    public Properties getConfiguration() {
-        return PROPERTIES;
-    }
-
-    private void loadConfig(){
-
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-
-        try(InputStream resourceStream = loader.getResourceAsStream(RESOURCE_NAME)) {
-            PROPERTIES.load(resourceStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String getProperty(String key) {
-        return PROPERTIES.getProperty(key);
+    @ApplicationScoped
+    public CompositeConfiguration getConfiguration() {
+        final CompositeConfiguration config = new CompositeConfiguration();
+        ConfigurationUtilities.loadConfig(CompositeConfiguration.class, config, servletContext.getRealPath("/config.properties"));
+        return config;
     }
 
     @Inject
     private ServletContext servletContext;
+
+    @Inject
+    @ConfigurationLoaded
+    private Event<ConfigurationEvent> configurationLoadedEvent;
 }

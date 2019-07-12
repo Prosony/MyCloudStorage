@@ -120,15 +120,53 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <!-- this profile is active by default -->
+                <activeByDefault>true</activeByDefault>
+                <!-- activate if system properties 'env=dev' -->
+                <property>
+                    <name>env</name>
+                    <value>dev</value>
+                </property>
+            </activation>
+            <properties>
+                <DataBase.POOL_CONNECTION_MAX>100</DataBase.POOL_CONNECTION_MAX>
+                <DataBase.URI_DEV>mongodb://185.77.204.249:27017/MyDB</DataBase.URI_DEV>
+                <DataBase.TITLE>MyDB</DataBase.TITLE>
+                <DataBase.HOST>185.77.204.249</DataBase.HOST>
+                <DataBase.PORT>27017</DataBase.PORT>
+                <JWT.Expiration>30</JWT.Expiration>
+                <JWT.SecretKey>xmtNwPDRXt</JWT.SecretKey>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <activation>
+                <!-- activate if system properties 'env=prod' -->
+                <property>
+                    <name>env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <properties>
+                <db.driverClassName></db.driverClassName>
+                <db.url></db.url>
+                <db.username></db.username>
+                <db.password></db.password>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

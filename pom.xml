@@ -13,6 +13,7 @@
     	<module>ServerSide</module>
         <module>DomainLayer</module>
         <module>toolkits</module>
+        <module>dispatcher</module>
     </modules>
 
     <build>
@@ -46,11 +47,12 @@
         <slf4j-api-version>1.7.5</slf4j-api-version>
         <slf4j-log4j12-version>1.7.26</slf4j-log4j12-version>
         <jasypt-version>1.9.2</jasypt-version>
+        <jjwt-version>0.9.1</jjwt-version>
+        <junit-version>4.12</junit-version>
     </properties>
 
 <dependencyManagement>
 	<dependencies>
-
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
@@ -166,6 +168,19 @@
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
             <version>${jasypt-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
         </dependency>
 
 

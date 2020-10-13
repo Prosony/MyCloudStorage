@@ -48,7 +48,7 @@
         <slf4j-log4j12-version>1.7.26</slf4j-log4j12-version>
         <jasypt-version>1.9.2</jasypt-version>
         <jjwt-version>0.9.1</jjwt-version>
-        <junit-version>4.12</junit-version>
+        <junit-version>4.13.1</junit-version>
     </properties>
 
 <dependencyManagement>
